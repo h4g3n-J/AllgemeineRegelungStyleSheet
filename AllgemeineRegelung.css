@@ -1,0 +1,30 @@
+/* https://www.w3schools.com/css/css_counters.asp */
+/* https://www.w3schools.com/cssref/pr_gen_counter-reset.asp */
+
+/* // TODO redefine numbering in ol */
+
+body {
+	/* Set "my-sec-counter" to 0 */
+	counter-reset: my-sec-counter;
+	/* --my-sec-counter: 2 */
+  }
+  
+  h2::before {
+	/* Increment "my-sec-counter" by 1 */
+	counter-increment: my-sec-counter;
+	content: "Section " counter(my-sec-counter) ". ";
+  }
+
+ol{
+	/* list-style: none; */
+	/* list-style-type: upper-roman; */
+	/* counter-set: start 100; */
+	counter-reset: inherit;
+	counter-increment: start 30;
+}
+
+h2{
+	font-size: 14;
+	font-style: inherit;
+	font-family: Arial, Helvetica, sans-serif;
+}
