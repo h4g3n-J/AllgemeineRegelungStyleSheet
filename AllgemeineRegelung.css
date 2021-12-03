@@ -1,30 +1,58 @@
-/* https://www.w3schools.com/css/css_counters.asp */
-/* https://www.w3schools.com/cssref/pr_gen_counter-reset.asp */
+/* https://2ality.com/2012/01/numbering-headingshtml.html */
 
 /* // TODO redefine numbering in ol */
 
 body {
-	/* Set "my-sec-counter" to 0 */
-	counter-reset: my-sec-counter;
-	/* --my-sec-counter: 2 */
-  }
-  
-  h2::before {
-	/* Increment "my-sec-counter" by 1 */
-	counter-increment: my-sec-counter;
-	content: "Section " counter(my-sec-counter) ". ";
+	/* create counter "h2Counter" and set to 0 */
+	counter-reset: h2Counter;
+	counter-reset: h3Counter;
+	/* counter-reset: olCounter; */
   }
 
-ol{
-	/* list-style: none; */
-	/* list-style-type: upper-roman; */
-	/* counter-set: start 100; */
-	counter-reset: inherit;
-	counter-increment: start 30;
+h1 {
+	/* similar to body command: set h2Counter to 0 */
+	counter-reset: h2Counter;
+}
+  
+h2::before {
+	/* insert counter before tag, \0000a0 is a non-breaking space */
+	content: counter(h2Counter) ".\0000a0";
+	counter-increment: h2Counter;
+	/* counter-increment: olCounter 100; */
 }
 
 h2{
 	font-size: 14;
 	font-style: inherit;
 	font-family: Arial, Helvetica, sans-serif;
+	
+	/* set h3Counter to zero */
+	counter-reset: h3Counter;
+
+	counter-reset: olCounter 100;
 }
+
+  h3::before{
+	content: counter(h2Counter) "." counter(h3Counter) ". ";
+	counter-increment: h3Counter;
+  }
+
+  
+  ol{
+	list-style-type: none;
+	/* define ls enumerator */
+	/* counter-reset: olCounter attr(start, number, 100); //todo #2 */
+	/* counter-reset: olCounter 100; */
+	/* counter-set: olCounter 100; */
+  }
+
+ li{
+	  counter-increment: olCounter;
+	  /* content: counter(olCounter); */
+  }
+
+li::before{
+	  /* counter-increment: olCounter; */
+	  content: counter(olCounter) ".\0000a0";
+	  font-weight: 900;
+  }
