@@ -3,20 +3,22 @@
 /* // TODO redefine numbering in ol */
 
 body {
-	/* create counter "h2counter" and set to 0 */
-	counter-reset: h2counter;
-	counter-reset: h3counter;
+	/* create counter "h2Counter" and set to 0 */
+	counter-reset: h2Counter;
+	counter-reset: h3Counter;
+	/* counter-reset: olCounter; */
   }
 
 h1 {
-	/* similar to body command: set h2counter to 0 */
-	counter-reset: h2counter;
+	/* similar to body command: set h2Counter to 0 */
+	counter-reset: h2Counter;
 }
   
 h2::before {
 	/* insert counter before tag, \0000a0 is a non-breaking space */
-	content: counter(h2counter) ".\0000a0";
-	counter-increment: h2counter;
+	content: counter(h2Counter) ".\0000a0";
+	counter-increment: h2Counter;
+	/* counter-increment: olCounter 100; */
 }
 
 h2{
@@ -24,27 +26,33 @@ h2{
 	font-style: inherit;
 	font-family: Arial, Helvetica, sans-serif;
 	
-	/* set h3counter to zero */
-	counter-reset: h3counter;
+	/* set h3Counter to zero */
+	counter-reset: h3Counter;
+
+	counter-reset: olCounter 100;
 }
 
   h3::before{
-	content: counter(h2counter) "." counter(h3counter) ". ";
-	counter-increment: h3counter;
+	content: counter(h2Counter) "." counter(h3Counter) ". ";
+	counter-increment: h3Counter;
   }
 
+  
   ol{
 	list-style-type: none;
 	/* define ls enumerator */
-	counter-reset: olCounter attr(start, number, 100);
+	/* counter-reset: olCounter attr(start, number, 100); //todo #2 */
+	/* counter-reset: olCounter 100; */
+	/* counter-set: olCounter 100; */
   }
 
-  li{
+ li{
 	  counter-increment: olCounter;
+	  /* content: counter(olCounter); */
   }
 
-  li::before{
+li::before{
 	  /* counter-increment: olCounter; */
 	  content: counter(olCounter) ".\0000a0";
+	  font-weight: 900;
   }
-
