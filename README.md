@@ -1,2 +1,2 @@
 # AllgemeineRegelungStyleSheet
-just a stylesheet for my documentation
+a simple stylesheet that serves for my documentation needs
